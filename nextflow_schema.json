@@ -1,0 +1,117 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"demo_url": "https://github.com/danpal96/wf-heatmap/releases/download/v0.1.0/wf-heatmap-demo.tar.gz",
+	"definitions": {
+		"input": {
+			"title": "Input Options",
+			"type": "object",
+			"description": "Parameters for finding and handling input data for analysis.",
+			"properties": {
+				"table": {
+					"type": "string",
+					"format": "path",
+					"title": "Input table",
+					"description": "Abundance tables in TSV format to use.",
+					"help_text": "This accepts one of two cases: (i) the path to a single TSV file; (ii) the path to a folder containing TSV files."
+				},
+				"sample_metadata": {
+					"type": "string",
+					"format": "path",
+					"title": "Sample Metadata",
+					"description": "Sample metadata TSV file.",
+					"help_text": "Path to the metadata file in TSV format. It has to have a column named sample with the names of the samples (column names in the input table)."
+				},
+				"feature_metadata": {
+					"type": "string",
+					"format": "path",
+					"title": "Feature Metadata",
+					"description": "Feature metadata TSV file.",
+					"help_text": "Path to the metadata file in TSV format. It has to have a column named feature with the names of the features (row names in the input table)."
+				}
+			},
+			"required": [
+				"table"
+			]
+		},
+		"heatmap": {
+			"title": "Heatmap Options",
+			"type": "object",
+			"description": "Parameters for the heatmap.",
+			"properties": {
+				"rows_dendrogram": {
+					"type": "boolean",
+					"title": "Rows Dendrograms",
+					"description": "Use a dendrogram to reorder the rows.",
+					"default": true
+				},
+				"columns_dendrogram": {
+					"type": "boolean",
+					"title": "Columns Dendrograms",
+					"description": "Use a dendrogram to reorder the columns.",
+					"default": true
+				}
+			}
+		},
+		"output": {
+			"title": "Output Options",
+			"type": "object",
+			"description": "Parameters for saving and naming workflow outputs.",
+			"properties": {
+				"out_dir": {
+					"type": "string",
+					"format": "directory-path",
+					"default": "output",
+					"title": "Output directory",
+					"description": "Directory for output of all workflow results."
+				}
+			}
+		},
+		"misc": {
+			"title": "Miscellaneous Options",
+			"type": "object",
+			"description": "Everything else.",
+			"default": "",
+			"properties": {
+				"help": {
+					"type": "boolean",
+					"description": "Display help text.",
+					"default": false,
+					"hidden": true
+				},
+				"version": {
+					"type": "boolean",
+					"description": "Display version and exit.",
+					"default": false,
+					"hidden": true
+				}
+			}
+		}
+	},
+	"allOf": [
+		{
+			"$ref": "#/definitions/input"
+		},
+		{
+			"$ref": "#/definitions/heatmap"
+		},
+		{
+			"$ref": "#/definitions/output"
+		},
+		{
+			"$ref": "#/definitions/misc"
+		}
+	],
+	"properties": {
+		"monochrome_logs": {
+			"type": "boolean"
+		},
+		"validate_params": {
+			"type": "boolean",
+			"default": true
+		},
+		"show_hidden_params": {
+			"type": "boolean"
+		}
+	}
+}

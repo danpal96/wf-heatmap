@@ -1,0 +1,5 @@
+{
+    "table": "table.tsv",
+    "sample_metadata": "sample_metadata.tsv",
+    "feature_metadata": "feature_metadata.tsv"
+}
